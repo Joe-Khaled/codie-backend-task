@@ -28,7 +28,11 @@ const getSingleCourseByID=async(req,res)=>{
 
 //POST - ADD A NEW COURSE
 const addNewCourse=async(req,res)=>{
-    let {title,description,image,startDate,endDate,price}=req.body
+    let {title,description,startDate,endDate,price}=req.body
+    const image=req.file.path;
+    // console.log(image);
+    // return;
+    price=Number(price);
     const dataValidation =validation(title,description,startDate,endDate,price);
     if (dataValidation){
         res.status(dataValidation.statusCode).json(dataValidation);
